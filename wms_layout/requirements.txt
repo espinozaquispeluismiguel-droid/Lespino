@@ -1,0 +1,17 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+websockets>=12  # necesario para el dashboard en tiempo real
+sqlalchemy[asyncio]>=2.0.30
+asyncpg>=0.29
+alembic>=1.13
+pydantic>=2.7
+pydantic-settings>=2.3
+python-multipart>=0.0.9
+PyJWT>=2.8
+bcrypt>=4.1
+pandas>=2.2
+openpyxl>=3.1
+# OCR (método foto_ia) - requiere además el binario tesseract-ocr (+ tesseract-ocr-spa)
+pytesseract>=0.3.10
+opencv-python-headless>=4.9
+numpy>=1.26

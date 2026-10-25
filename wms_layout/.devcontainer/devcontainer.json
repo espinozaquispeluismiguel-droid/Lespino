@@ -1,0 +1,22 @@
+{
+  "name": "WMS Layout & Inventario",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+  // 8000 = aplicación web (HTTPS automático en Codespaces -> la cámara del móvil funciona)
+  "forwardPorts": [8000],
+  "portsAttributes": {
+    "8000": { "label": "WMS (web)", "onAutoForward": "openBrowser" }
+  },
+
+  // Se ejecuta una vez al crear el Codespace: dependencias, .env, tablas y datos de prueba
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance"],
+      "settings": { "python.defaultInterpreterPath": "/usr/local/bin/python" }
+    }
+  }
+}

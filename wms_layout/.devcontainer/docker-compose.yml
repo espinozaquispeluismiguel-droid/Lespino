@@ -1,0 +1,27 @@
+# Contenedor de desarrollo (Python 3.12) + PostgreSQL 16.
+# El contenedor "app" comparte red con "db", así que PostgreSQL está en localhost:5432
+# y el DATABASE_URL de .env.example funciona tal cual.
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/python:1-3.12-bookworm
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    network_mode: service:db
+
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wms
+      POSTGRES_PASSWORD: wms
+      POSTGRES_DB: wms_layout
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wms -d wms_layout"]
+      interval: 3s
+      retries: 20
+
+volumes:
+  pgdata:
